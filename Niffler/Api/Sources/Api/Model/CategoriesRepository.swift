@@ -57,13 +57,12 @@ public class CategoriesRepository: ObservableObject {
         var removedCategory = categoriesDto[indexSet.first!]
         categories.remove(atOffsets: indexSet)
         removedCategory.archived = true
-        
+
         // TODO: Select another one if needed
-        let categoryUpdate = removedCategory
-        
+
         Task {
             do {
-              let _ = try await api.updateCategory(categoryUpdate)
+                _ = try await api.updateCategory(removedCategory)
             } catch {
                 // TODO: Show in UI
                 print(error)

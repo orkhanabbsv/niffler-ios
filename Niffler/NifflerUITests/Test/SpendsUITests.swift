@@ -26,6 +26,13 @@ final class SpendsUITests: TestCase {
     func test_user_create_new_category_and_create_spend() throws {
         let username = UUID().uuidString
         let description = UUID().uuidString
+
+        let app = XCUIApplication()
+
+        let loginPage = LoginPage(app: app)
+        let registrationPage = RegistrationPage(app: app)
+        let spendsPage = SpendsPage(app: app)
+        let newSpendPage = NewSpendPage(app: app)
         
         // Arrange
         launchAppWithoutLogin()
@@ -48,6 +55,14 @@ final class SpendsUITests: TestCase {
     func test_user_choose_category_and_create_spend() throws {
         let username = UUID().uuidString
         let description = UUID().uuidString
+        
+        let app = XCUIApplication()
+
+        let loginPage = LoginPage(app: app)
+        let registrationPage = RegistrationPage(app: app)
+        let spendsPage = SpendsPage(app: app)
+        let newSpendPage = NewSpendPage(app: app)
+        let profilePage = ProfilePage(app: app)
         
         // Arrange
         launchAppWithoutLogin()
@@ -76,6 +91,14 @@ final class SpendsUITests: TestCase {
     func test_deleted_category_is_not_shown_in_spend_screen() throws {
         let username = UUID().uuidString
         let description = UUID().uuidString
+        
+        let app = XCUIApplication()
+
+        let loginPage = LoginPage(app: app)
+        let registrationPage = RegistrationPage(app: app)
+        let spendsPage = SpendsPage(app: app)
+        let newSpendPage = NewSpendPage(app: app)
+        let profilePage = ProfilePage(app: app)
         
         // Arrange
         launchAppWithoutLogin()

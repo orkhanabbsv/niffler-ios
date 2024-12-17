@@ -59,10 +59,11 @@ public class CategoriesRepository: ObservableObject {
         removedCategory.archived = true
         
         // TODO: Select another one if needed
+        let categoryUpdate = removedCategory
         
         Task {
             do {
-                _ = try await api.updateCategory(removedCategory)
+              let _ = try await api.updateCategory(categoryUpdate)
             } catch {
                 // TODO: Show in UI
                 print(error)

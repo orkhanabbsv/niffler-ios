@@ -57,9 +57,9 @@ public class CategoriesRepository: ObservableObject {
         var removedCategory = categoriesDto[indexSet.first!]
         categories.remove(atOffsets: indexSet)
         removedCategory.archived = true
-        
+
         // TODO: Select another one if needed
-        
+
         Task {
             do {
                 _ = try await api.updateCategory(removedCategory)

@@ -34,7 +34,42 @@ class NewSpendPage: BasePage {
 //        return self
 //    }
     
+    func addSpend(description: String, isNewCategory: Bool) -> String {
+        let categoryName = UUID().uuidString
+        if isNewCategory {
+            pressAddNewCategory()
+                .inputCategoryName(categoryName: categoryName)
+        }
+    
+        inputAmount()
+        .inputDescription(description)
+        .pressAddSpend()
+        
+        return categoryName
+    }
+    
+    func pressAddNewCategory() -> Self{
+            XCTContext.runActivity(named: "Жму кноку добавления новой категории") { _ in
+                app.buttons["+ New category"].tap()
+            }
+        return self
+    }
+    
+    func inputCategoryName(categoryName: String) {
+         XCTContext.runActivity(named: "Вводим название категории, равное  \(categoryName)") { _ in
+             app.textFields["Name"].typeText(categoryName)
+             app.buttons["Add"].firstMatch.tap()}
+    }
+    
     func pressAddSpend() {
         app.buttons["Add"].tap()
+    }
+    
+    func isNewCategoryVisible(file: StaticString = #file, line: UInt = #line) {
+        let newCategoryButton = app.buttons["+ New category"]
+        waitForElement(newCategoryButton, timeout: 5, message: "'+ New category' кнопка не появилась.", file: file, line: line)
+
+        XCTAssertTrue(newCategoryButton.exists, "'+ New category' кнопка не видна.", file: file, line: line)
+        XCTAssertTrue(newCategoryButton.isHittable, "'+ New category' кнопка не доступна для нажатия.", file: file, line: line)
     }
 }
